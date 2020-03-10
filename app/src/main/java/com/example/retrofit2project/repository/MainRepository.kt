@@ -58,6 +58,28 @@ object MainRepository {
         }
     }
 
+    fun getAllQuote() : LiveData<List<Quote>>
+    {
+        job = Job()
+        return object : LiveData<List<Quote>>()
+        {
+            override fun onActive() {
+                super.onActive()
+
+                job?.let{ theJob->
+                    CoroutineScope(IO + theJob).launch {
+                        val user = RetrofitBuilderForQuote.apiService.getAllQuote()
+                        withContext(Main)
+                        {
+                            value = user
+                            theJob.complete()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     fun cancelJobs()
     {
         job?.cancel()

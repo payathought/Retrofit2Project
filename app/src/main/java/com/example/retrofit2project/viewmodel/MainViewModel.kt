@@ -24,6 +24,9 @@ class MainViewModel  : ViewModel()
             MainRepository.getQoute(it)
         }
 
+    val getAllquote : LiveData<List<Quote>> = MainRepository.getAllQuote()
+
+
 
     fun setUserId(user_id : String)
     {

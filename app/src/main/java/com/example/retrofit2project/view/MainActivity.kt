@@ -26,6 +26,10 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.setUserId("1")
         viewModel.setQuoteId("5")
+
+        viewModel.getAllquote.observe(this, Observer {
+            d("MainActivity-ALlQuote", "${it}")
+        })
     }
 
     override fun onDestroy() {

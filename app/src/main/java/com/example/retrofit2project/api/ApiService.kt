@@ -17,5 +17,8 @@ interface ApiService {
         @Path("user_id") user_id : String
     ) : Quote
 
+    @GET("posts")
+    suspend fun getAllQuote() : List<Quote>
+
     //https://jsonplaceholder.typicode.com/posts/
 }
